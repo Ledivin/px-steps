@@ -51,7 +51,7 @@
           <button class="btn" on-click="complete">Complete Current Step</button>
           <button class="btn" on-click="next">Next</button>
           <button class="btn" on-click="error">Error Step: </button>
-          <select id="errorIndex" value="{{errorIndex::change}}">
+          <select id="errorIndex"">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -106,10 +106,6 @@
        lastClickedID:{
          type: String,
          value: ''
-       },
-       errorIndex: {
-         type: Number,
-         value: 1
        }
     },
 
@@ -148,7 +144,7 @@
     },
 
     error: function() {
-      this.$.stepper.error(parseInt(this.errorIndex) - 1);
+      this.$.stepper.error(parseInt(this.$.errorIndex.value) - 1);
     },
 
     ready: function() {
