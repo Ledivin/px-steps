@@ -50,6 +50,14 @@
           <button class="btn" on-click="previous">Previous</button>
           <button class="btn" on-click="complete">Complete Current Step</button>
           <button class="btn" on-click="next">Next</button>
+          <button class="btn" on-click="error">Error Step: </button>
+          <select id="errorIndex" value="{{errorIndex::change}}">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
         </div>
         <template is="dom-if" if="[[clicked]]">
           <div style="margin-top: 1rem;">
@@ -98,6 +106,10 @@
        lastClickedID:{
          type: String,
          value: ''
+       },
+       errorIndex: {
+         type: Number,
+         value: 1
        }
     },
 
@@ -133,6 +145,10 @@
 
     complete: function() {
       this.$.stepper.complete();
+    },
+
+    error: function() {
+      this.$.stepper.error(parseInt(this.errorIndex) - 1);
     },
 
     ready: function() {
